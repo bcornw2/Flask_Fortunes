@@ -5,25 +5,18 @@ from datetime import datetime
 app = Flask(__name__)
 app.config["DEBUG"] = True
 @app.route("/", methods=["GET", "POST"])
-#d = datetime.datetime.now().strftime("%I:%Mp on %B %d, %Y")
+
 def runFortune():
 	d = datetime.now()
 	errors = ""
 	if request.method =="POST":
-#		date_time = datetime.strptime(date_time_string, '%Y-%m-%d %H:%M')
-		#question = None
-		#try:
 		question = request.form.get('question')
-		#except:
-		#	errors += "<p>{!r} is a broken value.</p>\n".format(request.form["question"])
 		if question is not None:
 			result = fortune()
 			f=open("audit.txt", "a+")
 			f.write(str(d) + " - " + question + "\n")
 			print(question)
 			question = str(question)
-#			question = request.form.get("question")
-		#	question = str(question)
 			return '''
 				<html>
 					<body>
